@@ -90,6 +90,12 @@ def add_metric(
                 status_code=409,
                 detail=f"Metric already exists for user {m.user_id} at {measured_at}"
             )
+        # Check for NOT NULL constraint violations
+        if "not" in str(e).lower() and "null" in str(e).lower():
+            raise HTTPException(
+                status_code=400,
+                detail="One or more required metric fields are missing or NULL"
+            )
         raise HTTPException(status_code=400, detail="Database constraint violation")
     db.refresh(metric)
     return metric

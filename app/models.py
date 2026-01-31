@@ -24,19 +24,19 @@ class InBodyMetrics(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), index=True)
 
-    measured_at = Column(DateTime, index=True)
+    measured_at = Column(DateTime, index=True, nullable=False)
 
     weight_lb = Column(Float, nullable=False)
-    inbody_score = Column(Integer)
-    skeletal_muscle_lb = Column(Float)
-    body_fat_lb = Column(Float)
-    body_fat_percent = Column(Float)
+    inbody_score = Column(Integer, nullable=False)
+    skeletal_muscle_lb = Column(Float, nullable=False)
+    body_fat_lb = Column(Float, nullable=False)
+    body_fat_percent = Column(Float, nullable=False)
 
-    waist_hip_ratio = Column(Float)
-    visceral_fat_level = Column(Integer)
+    waist_hip_ratio = Column(Float, nullable=False)
+    visceral_fat_level = Column(Integer, nullable=False)
 
-    bmr_kcal = Column(Integer)
-    soft_lean_lb = Column(Float)
+    bmr_kcal = Column(Integer, nullable=False)
+    soft_lean_lb = Column(Float, nullable=False)
 
     created_at = Column(DateTime, default=datetime.now(timezone.utc))
 
